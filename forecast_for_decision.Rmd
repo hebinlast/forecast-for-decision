@@ -1,0 +1,21 @@
+---
+title: "forecast_for_decision"
+author: "Richard Liu"
+date: "12/16/2020"
+---
+
+# Why risk quantification matters
+
+Like all the other markets, the key focus of the electricity trading market will be the price. We are assuming that the market is a complete market, which means that everybody has the same information, and information sufficient and reliable for them to make reasonable decisions. Also, we assume that the price will be decided based on the relationship between supply and demand. 
+
+However, that's not the case in real life. There will always be the first winner who reacts to hidden information from the markets and other sources and make better decisions than others. Therefore, knowing any information ahead about the price and the risk will be a great benefit for players to make decisions.
+
+Beyond that, different players have a different appetite for taking risks(that is to say, they have different abilities to absorb the risk and different preferences over losses and outcomes). Thus, it's not wise to treat them as equal "rational men" in the market, their decisions should be filtered with their actual conditions. 
+
+That's why the information we provide here is important. First, we have already quantified the risk with the estimation of the error distribution. Then, given the players' risk appetite, we could offer them corresponding suggestions that are close to their optimal choices based on quantified measures rather than heir intuitions.
+
+# Forward contract
+
+
+
+
