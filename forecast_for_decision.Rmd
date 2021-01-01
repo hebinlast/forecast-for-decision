@@ -1,11 +1,10 @@
 ---
 title: "forecast_for_decision"
 author: "Richard Liu"
-date: "12/16/2020"
+date: "Version of `r Sys.Date()`"
+output: pdf_document
 ---
-
 # Why risk quantification matters
-
 Like all the other markets, the key focus of the electricity trading market will be the price. We are assuming that the market is a complete market, which means that everybody has the same information, and information sufficient and reliable for them to make reasonable decisions. Also, we assume that the price will be decided based on the relationship between supply and demand. 
 
 However, that's not the case in real life. There will always be the first winner who reacts to hidden information from the markets and other sources and make better decisions than others. Therefore, knowing any information ahead about the price and the risk will be a great benefit for players to make decisions.
@@ -14,8 +13,34 @@ Beyond that, different players have a different appetite for taking risks(that i
 
 That's why the information we provide here is important. First, we have already quantified the risk with the estimation of the error distribution. Then, given the players' risk appetite, we could offer them corresponding suggestions that are close to their optimal choices based on quantified measures rather than heir intuitions.
 
-# Forward contract
+# Risk-Aversion Modeling with Forward Contract 
+Electricity price forecasting has become important to promote competition and to guarantee the benefit
+of participants in the market. For the generation side, generators and operators could make an optimal strategy for power generation to maximize their profit. For the demand side, consumers could consume less electricity when lower electricity price is forecasted. That's the general reasons why we ehphasizes on the value of using electricity price forecast information in the decision making process.
 
+However, different people still hold variable taste for taking risks. Their preferences over getting potential profits and taking risk of losses are different. Forward contract provides them with an option to balance the risk, to make a trade-off between their profits and risk. In order to quantify the risk of forecasted price, we will have the estimated error distribution. Besides, we will have a risk aversion function to quantify the taste for consumers to take the risk. That's how we build the risk aversion model with forward contract. We would like to find the best lock-in price for consumers with their taste for risk.
 
+We assume the consumer's consumption of electricity won't have an effect on the price of the market. And we define the price unit to be a standardized unit
 
+We have:
 
+$p_T$: the forecasted price at time T
+
+$\varepsilon_{T}$: the error of the forecast at time T
+
+$Q_{\varepsilon_{T}}$: the probability distribution of the error
+
+Then we have the price distribution at time T $P_T = p_T + \varepsilon_{T} * Q_{\varepsilon_{T}}$
+
+We also have a utility function that describes consumer's preferences over profits and risks. $$U(x) = x + \beta ln(x)$$
+With $U'(x) = 1 + \beta /x$ denoting first derivative and $U''(x) = -\beta /x^2$ denoting second derivative.
+
+The x in the utility function represents the original value of the price, while the $\beta ln(x)$ part represents the consumer's preference of risk. 
+
+When $\beta = 0$, the consumer is risk-neutral.
+
+When $\beta > 0$, the consumer is risk-averse.
+
+When $\beta < 0$, the consumer is risk-seeking.
+
+We define $p_f$ as the forward contract lock-in price. We would like to find the appropriate price that reflects the consumer's essential needs--the price that has the same utility function value with the sum of utility function value over the forecast price distribution.
+That is $$U(p_f) = U(P_T) = U(p_T + \varepsilon_{T} * Q_{\varepsilon_{T}})$$
